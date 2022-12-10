@@ -10,3 +10,6 @@
   tasks:
     - include: tasks/ssh.yml
     - include: tasks/core.yml
+    - include: tasks/dotfiles.yml
+    - include: tasks/git-setup.yml
+    - include: tasks/node-setup.yml

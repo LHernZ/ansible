@@ -1,0 +1,23 @@
+- name: Install stow
+  apt:
+    name: stow
+    state: present
+- name: Cloning .dotfiles
+  ansible.builtin.git:
+    repo: 'git@github.com:LHernZ/.dotfiles'
+    dest: "{{ lookup('env', 'HOME') }}/.dotfiles"
+    update: yes
+    accept_hostkey: yes
+    version: wip
+- name: Stow dotfiles
+  shell: cd $HOME/.dotfiles && ./ubuntu
+
+- name: Install TMUX
+  apt:
+    name: tmux
+    state: present
+- name: Install TPM
+  ansible.builtin.git:
+    repo: 'https://github.com/tmux-plugins/tpm'
+    dest: '$HOME/.tmux/plugins/tpm'
+
