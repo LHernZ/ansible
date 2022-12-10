@@ -11,6 +11,9 @@
     version: wip
   become_user: "{{ lookup('env', 'USER') }}"
 
+- name: Make executable
+  shell: chmod +x ./ubuntu
+
 - name: Stow dotfiles
   shell: cd $HOME/.dotfiles && ./ubuntu
 
