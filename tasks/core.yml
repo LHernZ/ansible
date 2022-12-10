@@ -5,7 +5,7 @@
 
 - name: Install buildtools
   apt:
-    name: build-essential
+    name: build-essential, unzip
   become: yes
 
 - name: Install ZSH
