@@ -5,7 +5,7 @@
     mode: 0700
     state: directory
 - name: Install ssh key
-  become_user: root
+  become_user: "{{ lookup('env', 'USER') }}"
   copy:
     src: "{{ source_key }}"
     dest: "{{ dest_key }}"
@@ -22,13 +22,13 @@
     mode: '0600'
     decrypt: 'yes'
 - name: Ensure .ssh directory exists.
-  become_user: root
+  become_user: "{{ lookup('env', 'USER') }}"
   file:
     dest: "{{ dest_key | dirname }}"
     mode: 0700
     state: directory
 - name: Install ssh key
-  become_user: root
+  become_user: "{{ lookup('env', 'USER') }}"
   copy:
     src: "{{ source_key }}"
     dest: "{{ dest_key }}"
