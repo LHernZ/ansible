@@ -12,7 +12,7 @@
   become_user: "{{ lookup('env', 'USER') }}"
 
 - name: Make executable
-  shell: chmod +x ./ubuntu
+  shell: chmod +x $HOME/.dotfiles/ubuntu
 
 - name: Stow dotfiles
   shell: cd $HOME/.dotfiles && ./ubuntu
