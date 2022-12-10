@@ -1,0 +1,21 @@
+- name: Install neovim
+  apt:
+    deb: https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
+  become: yes
+
+- name: Install ZSH
+  apt: name=zsh
+
+- name: Change shell to zsh
+  shell: chsh -s $(which zsh)
+
+- name: Check that ohmyzsh exists
+  stat:
+    path: /home/{{ lookup('env', 'USER') }}/.oh-my-zsh
+  register: oh_my_stats
+
+- name: Oh-My-Zsh
+  shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh > ~/.oh-my-installer && chmod +x ~/.oh-my-installer && ~/.oh-my-installer
+  when: oh_my_stats.stat.exists == False
+  become: yes
+
