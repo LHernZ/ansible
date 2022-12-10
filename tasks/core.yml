@@ -3,6 +3,11 @@
     deb: https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
   become: yes
 
+- name: Install buildtools
+  apt:
+    name: build-essential
+  become: yes
+
 - name: Install ZSH
   apt: name=zsh
 
