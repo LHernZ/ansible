@@ -5,7 +5,9 @@
     creates: "{{ ansible_env.USER }}/.nvm/nvm.sh"
   become: yes
   become_user: "{{ lookup('env', 'USER') }}"
+- name: Set up nvm
+  shell: export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")" [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 - name: Install latest node
-  shell: export NVM_DIR=\"$HOME/.nvm\"\n[ -s \"$NVM_DIR/nvm.sh\" ] && \\. \"$NVM_DIR/nvm.sh\" && nvm install node
+  shell: nvm install node
   become: yes
   become_user: "{{ lookup('env', 'USER') }}"
