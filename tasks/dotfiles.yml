@@ -9,7 +9,8 @@
     update: yes
     accept_hostkey: yes
     version: wip
-  become_user: "{{ lookup('env', 'HOME') }}"
+  become: yes
+  become_user: "{{ lookup('env', 'USER') }}"
 
 - name: Make executable
   shell: chmod +x $HOME/.dotfiles/ubuntu
