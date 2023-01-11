@@ -6,6 +6,6 @@
   become: yes
   become_user: "{{ lookup('env', 'USER') }}"
 - name: Install latest node
-  shell: nvm install node
+  shell: export NVM_DIR=\"$HOME/.nvm\"\n[ -s \"$NVM_DIR/nvm.sh\" ] && \\. \"$NVM_DIR/nvm.sh\" && nvm install node
   become: yes
   become_user: "{{ lookup('env', 'USER') }}"
