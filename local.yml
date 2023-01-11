@@ -5,8 +5,11 @@
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
   pre_tasks:
     - name: update repositories
-      apt: update_cache=yes
-      changed_when: false
+      become: true
+      apt: 
+        update_cache: true
+        force_apt_get: true
+        state: present
   tasks:
     - include: tasks/ssh.yml
     - include: tasks/core.yml
