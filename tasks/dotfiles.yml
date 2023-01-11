@@ -5,19 +5,19 @@
 - name: Cloning .dotfiles
   ansible.builtin.git:
     repo: 'git@github.com:LHernZ/.dotfiles'
-    dest: "/home/{{ lookup('env', 'USER') }}/.dotfiles"
+    dest: "/home/{{ lookup('env', 'HOME') }}/.dotfiles"
     update: yes
     accept_hostkey: yes
     version: wip
-  become_user: "{{ lookup('env', 'USER') }}"
+  become_user: "{{ lookup('env', 'HOME') }}"
 
 - name: Make executable
   shell: chmod +x $HOME/.dotfiles/ubuntu
-  become_user: "{{ lookup('env', 'USER') }}"
+  become_user: "{{ lookup('env', 'HOME') }}"
 
 - name: Stow dotfiles
   shell: cd $HOME/.dotfiles && ./ubuntu
-  become_user: "{{ lookup('env', 'USER') }}"
+  become_user: "{{ lookup('env', 'HOMe') }}"
 
 - name: Install TMUX
   apt:
@@ -28,4 +28,4 @@
   ansible.builtin.git:
     repo: 'https://github.com/tmux-plugins/tpm'
     dest: '$HOME/.tmux/plugins/tpm'
-  become_user: "{{ lookup('env', 'USER') }}"
+  become_user: "{{ lookup('env', 'HOME') }}"
