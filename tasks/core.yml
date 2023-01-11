@@ -16,7 +16,7 @@
 
 - name: Check that ohmyzsh exists
   stat:
-    path: /home/{{ lookup('env', 'HOME') }}/.oh-my-zsh
+    path: /home/{{ lookup('env', 'USER') }}/.oh-my-zsh
   register: oh_my_stats
 
 - name: Oh-My-Zsh
