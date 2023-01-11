@@ -4,5 +4,6 @@
   args:
     creates: "{{ ansible_env.USER }}/.nvm/nvm.sh"
   become: yes
+  become_user: "{{ lookup('env', 'USER') }}"
 - name: Install latest node
   shell: nvm install node
