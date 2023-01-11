@@ -2,6 +2,6 @@
   ansible.builtin.shell: >
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
   args:
-    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+    creates: "{{ ansible_env.USER }}/.nvm/nvm.sh"
 - name: Install latest node
   shell: nvm install node
