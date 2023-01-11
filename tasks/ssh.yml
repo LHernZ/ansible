@@ -18,7 +18,7 @@
 - name: Copy SSH Keys
   ansible.builtin.copy:
     src: .ssh/id_ed25519
-    dest: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
+    dest: "{{ lookup('env', 'USER') }}/.ssh/id_ed25519"
     mode: '0600'
     decrypt: 'yes'
 - name: Ensure .ssh directory exists.
@@ -41,6 +41,6 @@
 - name: Copy SSH Keys
   ansible.builtin.copy:
     src: .ssh/id_ed25519
-    dest: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
+    dest: "{{ lookup('env', 'USER') }}/.ssh/id_ed25519"
     mode: '0600'
     decrypt: 'yes'
