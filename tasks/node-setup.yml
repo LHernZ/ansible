@@ -1,13 +1,18 @@
 - name: Install nvm
+  become: no
   ansible.builtin.shell: >
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
   args:
-    creates: "{{ ansible_env.USER }}/.nvm/nvm.sh"
-  become: yes
-  become_user: "{{ lookup('env', 'USER') }}"
-- name: Set up nvm
-  shell: export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")" [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-- name: Install latest node
-  shell: nvm install node
-  become: yes
-  become_user: "{{ lookup('env', 'USER') }}"
+    executable: /bin/bash
+    chdir: "$HOME"
+    creates: "$HOME/.nvm/nvm.sh"
+- name: Install node
+  become: no
+  shell: >
+    . {{ ansible_env.HOME }}/.nvm/nvm.sh && nvm install {{ item }}
+  args:
+    executable: /bin/bash
+    chdir: "{{ ansible_env.HOME }}"
+    creates: "{{ ansible_env.HOME }}/.nvm/versions/{{ item }}"
+  loop:
+    - 14.20.0
