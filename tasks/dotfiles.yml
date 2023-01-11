@@ -14,11 +14,13 @@
 
 - name: Make executable
   shell: chmod +x $HOME/.dotfiles/ubuntu
-  become_user: "{{ lookup('env', 'HOME') }}"
+  become: yes
+  become_user: "{{ lookup('env', 'USER') }}"
 
 - name: Stow dotfiles
   shell: cd $HOME/.dotfiles && ./ubuntu
-  become_user: "{{ lookup('env', 'HOME') }}"
+  become: yes
+  become_user: "{{ lookup('env', 'USER') }}"
 
 - name: Install TMUX
   apt:
@@ -29,4 +31,5 @@
   ansible.builtin.git:
     repo: 'https://github.com/tmux-plugins/tpm'
     dest: '$HOME/.tmux/plugins/tpm'
-  become_user: "{{ lookup('env', 'HOME') }}"
+  become: yes
+  become_user: "{{ lookup('env', 'USER') }}"
